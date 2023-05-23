@@ -42,7 +42,7 @@ fun GameItem(
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
-                .padding(8.dp),
+                .padding(4.dp),
         ) {
             AsyncImage(
                 model = cover,
@@ -53,7 +53,7 @@ fun GameItem(
                     .size(width = 150.dp, height = 200.dp)
                     .clip(Shapes.medium)
             )
-            Spacer(modifier = Modifier.width(4.dp))
+            Spacer(modifier = Modifier.width(8.dp))
             Column(
                 verticalArrangement = Arrangement.SpaceBetween,
                 modifier = modifier
