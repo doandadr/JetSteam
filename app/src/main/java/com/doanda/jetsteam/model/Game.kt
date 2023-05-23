@@ -1,15 +1,17 @@
 package com.doanda.jetsteam.model
 
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 @Entity(tableName = "game")
 data class Game(
-    val id: Int,
+    @PrimaryKey
+    val id: Long,
     val name: String,
     val summary: String,
-    val firstReleaseDate: Int,
-    val rating: Any,
+    val firstReleaseDate: Long,
+    val rating: Double,
     val cover: String,
-    val genres: List<String>,
-    val platforms: List<String>,
+    val genres: String,
+    val platforms: String,
 )

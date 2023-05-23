@@ -32,11 +32,11 @@ class GameRepository(private val database: FavoriteDatabase) {
         }
     }
 
-    fun getAllCountries(): Flow<List<Game>> {
+    fun getGames(): Flow<List<Game>> {
         return flowOf(gameList)
     }
 
-    fun getCountryById(gameId: Int): Game {
+    fun getGameDetail(gameId: Long): Game {
         return gameList.first { game ->
             game.id == gameId
         }
@@ -67,7 +67,16 @@ class GameRepository(private val database: FavoriteDatabase) {
         return database.favoriteDao().getAllFavorites()
     }
 
-    fun isGameFavorited(gameId: Int): Flow<Boolean> {
+    fun isGameFavorited(gameId: Long): Flow<Boolean> {
         return database.favoriteDao().isGameFavorited(gameId)
+    }
+
+    fun searchGames(searchQuery: String): Flow<List<Game>> {
+        return flow {
+            val searchResults = gameList.filter {
+                it.name.contains(searchQuery, ignoreCase = true)
+            }
+            emit(searchResults)
+        }
     }
 }
