@@ -2,4 +2,8 @@
     <string name="app_name">JetSteam</string>
     <string name="my_name">Doanda Dresta Rahma</string>
     <string name="my_email_address">ddoanda@gmail.com</string>
+    <string name="searchbar_placeholder_text">Looking for a game?</string>
+    <string name="list_empty">Oops! There seems to be nothing here.</string>
+    <string name="scroll_to_top">Scroll to Top</string>
+    <string name="back_to_home">Back to home</string>
 </resources>
