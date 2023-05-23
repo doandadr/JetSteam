@@ -5,6 +5,7 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -18,6 +19,7 @@ import com.doanda.jetsteam.ui.screen.about.AboutScreen
 import com.doanda.jetsteam.ui.screen.detail.DetailScreen
 import com.doanda.jetsteam.ui.screen.favorite.FavoriteScreen
 import com.doanda.jetsteam.ui.screen.home.HomeScreen
+import com.doanda.jetsteam.ui.theme.JetSteamTheme
 
 // TODO
 @Composable
@@ -31,7 +33,10 @@ fun JetSteamApp(
     Scaffold(
         bottomBar = {
             if (currentRoute != Screen.Detail.route) {
-                BottomBar(navController = navController)
+                BottomBar(
+                    navController = navController,
+                    currentRoute = currentRoute
+                )
             }
         }
     ) { innerPadding ->
@@ -43,17 +48,13 @@ fun JetSteamApp(
             composable(Screen.Home.route) {
                 HomeScreen(
                     navigateToDetail = { gameId ->
-                        navController.navigate(Screen.Detail.createRoute(gameId)) {
-                            launchSingleTop = true
-                        }
+                        navController.navigate(Screen.Detail.createRoute(gameId))
                     }
                 )
             }
             composable(Screen.Favorite.route) {
                 FavoriteScreen { gameId ->
-                    navController.navigate(Screen.Detail.createRoute(gameId)) {
-                        launchSingleTop = true
-                    }
+                    navController.navigate(Screen.Detail.createRoute(gameId))
                 }
             }
             composable(Screen.About.route) {
@@ -66,12 +67,20 @@ fun JetSteamApp(
                 val id = it.arguments?.getLong("gameId") ?: -1L
                 DetailScreen(
                     gameId = id,
-                ) {
-                    navController.navigateUp()
-                }
+                    navigateToBack = {
+                        navController.navigateUp()
+                    }
+                )
             }
         }
 
     }
 }
 
+@Preview(showBackground = true)
+@Composable
+fun JetAseanAppPreview() {
+    JetSteamTheme() {
+        JetSteamApp()
+    }
+}
