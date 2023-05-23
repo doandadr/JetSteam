@@ -1,4 +1,14 @@
 package com.doanda.jetsteam.di
 
-class Injection {
+import android.content.Context
+import com.doanda.jetsteam.data.local.FavoriteDatabase
+import com.doanda.jetsteam.data.repository.GameRepository
+
+object Injection {
+    fun provideRepository(context: Context): GameRepository {
+        val database = FavoriteDatabase.getDatabase(context)
+        return GameRepository(
+            database = database,
+        )
+    }
 }
