@@ -20,6 +20,7 @@ class DetailViewModel(private val repo: GameRepository)
     private val _favoriteStatus = MutableStateFlow(false)
     val favoriteStatus: StateFlow<Boolean>
         get() = _favoriteStatus
+
     fun getGameDetail(gameId: Long) {
         viewModelScope.launch {
             _uiState.value = UiState.Loading
@@ -27,11 +28,11 @@ class DetailViewModel(private val repo: GameRepository)
         }
     }
 
-    fun getFavoriteStatus(gameId: Long) {
+    fun getFavoriteStatus(gameId: Long) =
         viewModelScope.launch {
             _favoriteStatus.value = repo.isGameFavorited(gameId).first()
         }
-    }
+
 
     fun updateFavoriteStatus(game: Game) {
         viewModelScope.launch {
