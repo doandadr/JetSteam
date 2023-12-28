@@ -11,7 +11,7 @@ Game list app using Jetpack Compose for Dicoding submission | Bangkit 2023
 ## Built with
 Here are the technologies and libraries used to create this project:
 - Android Studio ver. Electric Eel | 2022.1.1
-- - Jetpack Compose
+- Jetpack Compose
 - MVVM Architecture v2.6.1
 - Room v2.5.1
 - Datastore v1.0.0
